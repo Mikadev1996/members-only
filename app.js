@@ -12,7 +12,9 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const signUpRouter = require('./routes/signup');
 const signInRouter = require('./routes/signin');
+const signOutRouter = require('./routes/signout');
 const memberRouter = require('./routes/member');
+
 const User = require('./models/user');
 
 
@@ -64,6 +66,7 @@ app.use('/', indexRouter);
 app.use('/', memberRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
+app.use('/sign-out', signOutRouter);
 
 
 module.exports = app;
