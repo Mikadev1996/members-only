@@ -1,0 +1,43 @@
+extends layout
+
+block content
+    nav
+        div.nav-content
+            div.nav-text
+                p Members Only!
+                if (user)
+                    p Welcome #{user.username}!
+                    p Test, isMember? #{user.isMember}
+        div.nav-links
+            div
+                a(href='/')
+                    p Home
+                if (!user)
+                    a(href='/sign-up')
+                        p Sign Up
+                    a(href='/sign-in')
+                        p Sign In
+                if (user)
+                    a(href='/sign-out')
+                        p Sign Out
+            div
+                a(href='/apply-member')
+                    p Become a Member
+                a(href='/apply-admin')
+                    p Become an Admin
+
+    main.content
+        div.content-display
+            form#form-container(method='POST' action='')
+                .header
+                    h2 Apply Member Form
+                div#form.form
+                    .form-control
+                        label(for='password') Password:
+                        input#password(type='password' name='password' placeholder='Password' required='true')
+                        i.fas.fa-check-circle
+                        i.fas.fa-exclamation-circle
+                        small Error Message
+
+                    div
+                        button(type='submit') Submit
