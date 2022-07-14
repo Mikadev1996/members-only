@@ -1,4 +1,5 @@
 const User = require ('../models/user');
+const bcrypt = require('bcryptjs');
 
 exports.sign_up_get = (req, res, next) => {
     res.render('signup', {
@@ -13,6 +14,9 @@ exports.sign_up_post = (req, res, next) => {
         const user = new User({
             username: req.body.username,
             password: hashedPass,
+            date_joined: Date.now(),
+            isMember: false,
+            isAdmin: false,
         }).save((err) => {
             if (err) return next(err);
             res.redirect('/');

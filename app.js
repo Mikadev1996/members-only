@@ -12,6 +12,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const signUpRouter = require('./routes/signup');
 const signInRouter = require('./routes/signin');
+const memberRouter = require('./routes/member');
 const User = require('./models/user');
 
 
@@ -60,7 +61,9 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
+app.use('/', memberRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
+
 
 module.exports = app;

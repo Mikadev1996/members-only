@@ -13,8 +13,18 @@ nav {
 .nav-links {
     width: 100vw;
     height: 30px;
+    padding: 10px;
     background-color: whitesmoke;
     color: white;
     display: flex;
+    justify-content: space-around;
     align-items: center;
+}
+
+.nav-links a {
+    margin: 0 10px;
+}
+
+.nav-links div {
+    display: flex;
 }
