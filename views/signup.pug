@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    nav
+        div.nav-content
+            div.nav-text
+                p Members Only!
+        div.nav-links
+            a(href='/')
+                p Home
+            a(href='/sign-up')
+                p Sign Up
+            a(href='/sign-in')
+                p Sign In
+
+    main.content
+        div.content-display
+            form#form-container(method='POST' action='')
+                .header
+                    h2 Sign Up Form
+                div#form.form
+                    .form-control
+                        label(for='username') username:
+                        input#username(type='text' name='username' placeholder='username' required='true')
+                        i.fas.fa-check-circle
+                        i.fas.fa-exclamation-circle
+                        small Error Message
+                    .form-control
+                        label(for='password') Password:
+                        input#password(type='password' name='password' placeholder='Password' required='true')
+                        i.fas.fa-check-circle
+                        i.fas.fa-exclamation-circle
+                        small Error Message
+
+                    div
+                        button(type='submit') Submit

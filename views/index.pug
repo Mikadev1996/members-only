@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  nav
+    div.nav-content
+      div.nav-text
+        p Members Only!
+    div.nav-links
+      a(href='/')
+        p Home
+      a(href='/sign-up')
+        p Sign Up
+      a(href='/sign-in')
+        p Sign In
+
+  main.content
+    h1= title

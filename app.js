@@ -10,6 +10,8 @@ const logger = require('morgan');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
+const signUpRouter = require('./routes/signup');
+const signInRouter = require('./routes/signin');
 const User = require('./models/user');
 
 
@@ -58,5 +60,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
+app.use('/sign-up', signUpRouter);
+app.use('/sign-in', signInRouter);
 
 module.exports = app;
