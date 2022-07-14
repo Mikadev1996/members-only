@@ -1,10 +1,12 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
+const logger = require('morgan');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
@@ -19,6 +21,12 @@ db.on('error', () => { console.error.bind(console, 'MongoDB connection error') }
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 passport.use(
     new LocalStrategy((username, password, done) => {
