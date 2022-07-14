@@ -51,6 +51,4 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 
-
-
 module.exports = app;
