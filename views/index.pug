@@ -5,6 +5,9 @@ block content
     div.nav-content
       div.nav-text
         p Members Only!
+        if (user)
+          p Welcome #{user.name}!
+          p Test, isMember? #{user.isMember}
     div.nav-links
       div
         a(href='/')
