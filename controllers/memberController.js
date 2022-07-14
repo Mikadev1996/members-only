@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs');
-const Password = require('../models/passwords');
+const Password = require('../models/password');
 
 exports.apply_member_get = (req, res, next) => {
     res.render('apply_member', {
@@ -13,6 +13,9 @@ exports.apply_member_post = [
     body('password', 'Password must not be empty.').trim().isLength({min: 1}).escape(),
 
     (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) return console.log(errors);
+
         Password.findOne({role: "member"}, (err, role) => {
             if (err) return next(err);
 
@@ -38,7 +41,7 @@ exports.apply_member_post = [
             }
 
             else {
-                res.redirect('/');
+                res.redirect('/apply-member');
             }
 
             // bcrypt.compare(role.password, req.body.password, (err, result) => {
@@ -67,32 +70,50 @@ exports.apply_admin_post = [
     body('password', 'Password must not be empty.').trim().isLength({min: 1}).escape(),
 
     (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) return console.log(errors);
+
         Password.findOne({role: "admin"}, (err, role) => {
             if (err) return next(err);
 
-            bcrypt.compare(role.password, req.body.password, (err, result) => {
-                if (err) return next(err);
-                if (result) {
-                    const errors = validationResult(req);
-                    if (!errors.isEmpty()) {
-                        console.log(errors);
-                        return;
-                    }
-                    const newUser = new User({
-                        name: req.user.username,
-                        password: req.user.password,
-                        date_joined: req.user.date_joined,
-                        isMember: req.user.isMember,
-                        isAdmin: true,
-                        _id: req.user._id,
-                    })
-
-                    User.findByIdAndUpdate(req.user._id, newUser, {}, function(err, theUser) {
-                        if (err) return next(err);
-                        res.redirect('/');
-                    })
+            if (role.password === req.body.password) {
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                    console.log(errors);
+                    return;
                 }
-            })
+                const newUser = new User({
+                    name: req.user.username,
+                    password: req.user.password,
+                    date_joined: req.user.date_joined,
+                    isMember: req.user.isMember,
+                    isAdmin: true,
+                    _id: req.user._id,
+                })
+
+                User.findByIdAndUpdate(req.user._id, newUser, {}, function (err, theUser) {
+                    if (err) return next(err);
+                    res.redirect('/');
+                })
+            } else {
+                res.redirect('/apply-admin');
+            }
         })
+
+        // Password.findOne({role: "admin"}, (err, role) => {
+        //     if (err) return next(err);
+        //
+        //     bcrypt.compare(role.password, req.body.password, (err, result) => {
+        //         if (err) return next(err);
+        //         console.log(role.password);
+        //         console.log(req.body.password);
+        //         if (result) {
+        //            // change admin status
+        //         }
+        //         else {
+        //             console.log(result);
+        //         }
+        //     })
+        // })
     }
 ]

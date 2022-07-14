@@ -7,7 +7,8 @@ block content
         p Members Only!
         if (user)
           p Welcome #{user.username}!
-          p Test, isMember? #{user.isMember}
+          p isMember? #{user.isMember}
+          p isAdmin? #{user.isAdmin}
     div.nav-links
       div
         a(href='/')
@@ -21,10 +22,12 @@ block content
           a(href='/sign-out')
             p Sign Out
       div
-        a(href='/apply-member')
-          p Become a Member
-        a(href='/apply-admin')
-          p Become an Admin
+        if (user && !user.isMember)
+          a(href='/apply-member')
+            p Become a Member
+        if (user && !user.isAdmin)
+          a(href='/apply-admin')
+            p Become an Admin
 
 
   main.content
