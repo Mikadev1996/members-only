@@ -21,5 +21,29 @@ a {
   min-height: calc(100vh - 105px);
   margin-top: 105px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.content-display {
+  display: flex;
+  height: 100%;
+  width: 36rem;
+}
+
+.messages-container {
+  width: 32rem;
+}
+
+.user-info {
+  width: 150px;
+  height: 100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 5px;
+  border-bottom: solid 1px #3c4043;
+  cursor: default;
 }
