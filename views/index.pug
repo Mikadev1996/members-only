@@ -29,6 +29,22 @@ block content
     .content-display
       .content-container
       .content-container#messages-container
+        .messages-container
+          .messages-content
+            .new-message
+              p Some Text
+            .new-message
+              p Some Text 2
+          form.new-message-container(method='POST' action='/send-message')
+            .form-control
+              label(for='title') Title:
+              input#title(type='text' name='Title' placeholder='Title' required='false')
+            .form-control
+              label(for='message') Message:
+              input#message(type='text' name='message' placeholder='Message' required='true')
+            div
+              button(type='submit') Submit
+
       .content-container
         if (user)
           .user-info
