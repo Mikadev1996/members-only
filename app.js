@@ -14,7 +14,7 @@ const signUpRouter = require('./routes/signup');
 const signInRouter = require('./routes/signin');
 const signOutRouter = require('./routes/signout');
 const memberRouter = require('./routes/member');
-const messageRouter = require('./routes/message');
+const messageRouter = require('./routes/messages');
 
 const User = require('./models/user');
 
