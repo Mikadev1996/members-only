@@ -32,10 +32,11 @@ block content
         if (user)
           .messages-container
             .messages-content
-              .new-message
-                p Some Text
-              .new-message
-                p Some Text 2
+              ul
+                each message in messages
+                  li
+                    p #{message.title}
+                    p #{message.text}
             form.new-message-container(method='POST' action='/send-message')
               .form-control
                 label(for='title') Title:
