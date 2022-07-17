@@ -1,5 +1,6 @@
 const Message = require ('../models/message');
 const User = require ('../models/user');
+const moment = require('moment');
 
 exports.messages_get = (req, res, next) => {
     Message.find()
@@ -16,11 +17,13 @@ exports.messages_get = (req, res, next) => {
 }
 
 exports.send_message_post = (req, res, next) => {
+    const date_formatted = moment(Date.now()).format('MMMM Do YYYY, h:mm a');
     const newMessage = new Message({
         title: req.body.title,
         text: req.body.text,
+        date_formatted: date_formatted,
         timestamp: Date.now(),
-        user: req.user
+        user: req.user._id
     }).save((err) => {
         if (err) return next(err);
         res.redirect('/');

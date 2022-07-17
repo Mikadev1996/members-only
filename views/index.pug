@@ -34,14 +34,13 @@ block content
             each message in messages
               if (user)
                 li
-                  p.message-title #{message.title}
-                  p.message-text #{message.text}
-                  p.message-text #{message.user.username}
+                  p.message-title #{message.user.username} : #{message.title}
+                  p.message-text #{message.date_formatted} #{message.text}
 
               else
                 li
-                  p.message-title signed out #{message.title}
-                  p.message-text signed out #{message.text}
+                  p.message-title #{message.title}
+                  p.message-text #{message.text}
         if (user)
           form.new-message-container(method='POST' action='/send-message')
             .message-control
