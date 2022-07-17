@@ -1,18 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Message = require('../models/message');
+const messageRouter = require('../controllers/messageController');
 
-router.get('/', (req, res, next) => {
-  Message.find()
-      .sort([['timestamp', 'descending']])
-      .exec((err, list_messages) => {
-        if (err) return next(err);
-        res.render('index', {
-          title: "Members Only ",
-          messages: list_messages,
-          user: req.user
-        });
-      })
+router.get('/', messageRouter.messages_get);
 
-})
 module.exports = router;
