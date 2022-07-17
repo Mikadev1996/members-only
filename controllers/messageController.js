@@ -29,3 +29,11 @@ exports.send_message_post = (req, res, next) => {
         res.redirect('/');
     })
 }
+
+exports.delete_message_post = (req, res, next) => {
+    Message.findByIdAndDelete(req.body.messageId, function deletedMessage(err) {
+        if (err) return next(err);
+        res.redirect('/');
+    })
+
+}
