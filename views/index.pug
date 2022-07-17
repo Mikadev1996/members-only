@@ -34,8 +34,8 @@ block content
             ul.messages
               each message in messages
                 li
-                  p #{message.title}
-                  p #{message.text}
+                  p.message-title #{message.title}
+                  p.message-text #{message.text}
           form.new-message-container(method='POST' action='/send-message')
             .message-control
               input#title(type='text' name='title' placeholder='Title' required='false')
