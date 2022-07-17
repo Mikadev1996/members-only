@@ -1,5 +1,38 @@
 #messages-container {
-    background-color: whitesmoke;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+}
+
+.messages-content {
+    height: calc(100% - 115px);
+    display: flex;
+    flex-direction: column;
+}
+
+.new-message-container {
+    height: 115px;
+}
+
+.messages {
+}
+
+.message-control input{
+    border: none;
+    border-bottom: 1px solid grey;
+    display: block;
+    font-family: inherit;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+.submit-message {
+    margin: 0;
+    border: none;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.submit-message:hover {
+    background-color: lightgreen;
 }

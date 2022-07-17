@@ -30,29 +30,26 @@ block content
       .content-container
       .content-container#messages-container
         if (user)
-          .messages-container
-            .messages-content
-              ul
-                each message in messages
-                  li
-                    p #{message.title}
-                    p #{message.text}
-            form.new-message-container(method='POST' action='/send-message')
-              .form-control
-                label(for='title') Title:
-                input#title(type='text' name='title' placeholder='Title' required='false')
-              .form-control
-                label(for='message') Message:
-                input#message(type='text' name='text' placeholder='Message' required='true')
-              div
-                button(type='submit') Submit
+          .messages-content
+            ul.messages
+              each message in messages
+                li
+                  p #{message.title}
+                  p #{message.text}
+          form.new-message-container(method='POST' action='/send-message')
+            .message-control
+              input#title(type='text' name='title' placeholder='Title' required='false')
+            .message-control
+              input#message(type='text' name='text' placeholder='Message' required='true')
+            div
+              button.submit-message(type='submit') Submit
 
       .content-container
         if (user)
           .user-info
               p Welcome #{user.username}!
-              p isMember? #{user.isMember}
-              p isAdmin? #{user.isAdmin}
+              p Member? #{user.isMember}
+              p Admin? #{user.isAdmin}
 
 
 
