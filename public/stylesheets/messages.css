@@ -28,7 +28,6 @@ li {
 .messages li {
     background-color: whitesmoke;
     border-radius: 10px;
-    width: 90%;
 }
 
 .message-control input{

@@ -3,29 +3,25 @@ extends layout
 block content
     nav
         div.nav-content
-            div.nav-text
-                p Members Only!
-                if (user)
-                    p Welcome #{user.username}!
-                    p Test, isMember? #{user.isMember}
-        div.nav-links
-            div
-                a(href='/')
-                    p Home
-                if (!user)
-                    a(href='/sign-up')
-                        p Sign Up
-                    a(href='/sign-in')
-                        p Sign In
-                if (user)
-                    a(href='/sign-out')
-                        p Sign Out
-            div
-                a(href='/apply-member')
-                    p Become a Member
-                a(href='/apply-admin')
-                    p Become an Admin
-
+            div.nav-links
+                div
+                    a(href='/')
+                        p Home
+                    if (!user)
+                        a(href='/sign-up')
+                            p Sign Up
+                        a(href='/sign-in')
+                            p Sign In
+                    if (user)
+                        a(href='/sign-out')
+                            p Sign Out
+                div
+                    if (user && !user.isMember)
+                        a(href='/apply-member')
+                            p Become a Member
+                    if (user && !user.isAdmin)
+                        a(href='/apply-admin')
+                            p Become an Admin
     main.content
         div.content-display
             form#form-container(method='POST' action='')
