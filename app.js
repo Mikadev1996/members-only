@@ -20,11 +20,14 @@ const messageRouter = require('./routes/messages');
 
 const User = require('./models/user');
 
+const dev_db_url = "mongodb+srv://mika:mika@cluster0.ntegc.mongodb.net/members-only?retryWrites=true&w=majority";
+const myMongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(myMongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const myMongoDB = process.env.MONGODB_URI;
-mongoose.connect("mongodb+srv://mika:mika@cluster0.ntegc.mongodb.net/members-only?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
-db.on('error', () => { console.error.bind(console, 'MongoDB connection error') });
+db.on('error', () => {
+    console.error.bind(console, 'MongoDB connection error');
+})
 
 const app = express();
 app.use(compression());
