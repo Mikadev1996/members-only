@@ -22,7 +22,7 @@ const User = require('./models/user');
 
 
 const myMongoDB = process.env.MONGODB_URI;
-mongoose.connect(myMongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://mika:mika@cluster0.ntegc.mongodb.net/members-only?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', () => { console.error.bind(console, 'MongoDB connection error') });
 
