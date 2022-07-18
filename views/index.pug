@@ -32,14 +32,14 @@ block content
         .messages-content
           ul.messages
             each message in messages
-              if (user)
+              if (user.isMember)
                 li
                   p.message-title #{message.user.username} : #{message.title}
                   p.message-text #{message.date_formatted} #{message.text}
                   if (user.isAdmin)
                     form(method='POST' action='/delete-message')
                       input#messageId(type='hidden' name='messageId' required='true' value=message._id)
-                      button(type='submit') Delete
+                      button.form-delete(type='submit') Delete
               else
                 li
                   p.message-title #{message.title}
