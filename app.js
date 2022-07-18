@@ -7,6 +7,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
 const logger = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
@@ -25,6 +27,9 @@ const db = mongoose.connection;
 db.on('error', () => { console.error.bind(console, 'MongoDB connection error') });
 
 const app = express();
+app.use(compression());
+app.use(helmet());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
