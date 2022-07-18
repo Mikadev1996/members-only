@@ -20,7 +20,7 @@ const messageRouter = require('./routes/messages');
 
 const User = require('./models/user');
 
-const dev_db_url = "mongodb+srv://mika:mika@cluster0.ntegc.mongodb.net/members-only?retryWrites=true&w=majority";
+const dev_db_url = "mongodb+srv://mika:mika@cluster0.ntegc.mongodb.net/members-only?retryWrites=true&w=majoritygit ";
 const myMongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(myMongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
